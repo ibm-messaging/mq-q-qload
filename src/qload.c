@@ -92,9 +92,7 @@ static CSPARTS MessageSizeParts[] =
 /**********************************************************************/
 void Title(void)
 {
-  char * pYear = __DATE__;
-  fprintf(stdout,"5724-H72 (C) Copyright IBM Corp. 1994, %4.4s.\n"
-                  "WebSphere MQ Queue Load/Unload Utility\n",pYear+7);
+  fprintf(stdout,"IBM MQ Queue Load/Unload Utility [Build:%s]\n",__DATE__);
 }
 
 /**********************************************************************/
@@ -105,7 +103,7 @@ void Usage(void)
 {
 
   Title();
-  fprintf(stdout,"\nUsage: dmpmqmsg <Optional flags as below>\n");
+  fprintf(stdout,"\nUsage: qload <Optional flags as below>\n");
   fprintf(stdout,"        [-a <File access mode for fopen()>\n");
   fprintf(stdout,"            a  Append\n");
   fprintf(stdout,"            b  Binary\n");
@@ -177,12 +175,12 @@ void Usage(void)
   fprintf(stdout,"\n");
   fprintf(stdout,"Examples \n");
   fprintf(stdout,"-------- \n");
-  fprintf(stdout,"Unload a queue to a file        : dmpmqmsg -iQ1 -fmyfile\n");
-  fprintf(stdout,"Load a queue from a file        : dmpmqmsg -oQ1 -fmyfile\n");
-  fprintf(stdout,"Copy a queue from Q1 to Q2      : dmpmqmsg -iQ1 -oQ2\n");
-  fprintf(stdout,"Move a queue from Q1 to Q2      : dmpmqmsg -IQ1 -oQ2\n");
-  fprintf(stdout,"Move old messages from Q1 to Q2 : dmpmqmsg -IQ1 -oQ2 -T1440\n");
-  fprintf(stdout,"Provide Summary of messages     : dmpmqmsg -iQ1 -ds\n");
+  fprintf(stdout,"Unload a queue to a file        : qload -iQ1 -fmyfile\n");
+  fprintf(stdout,"Load a queue from a file        : qload -oQ1 -fmyfile\n");
+  fprintf(stdout,"Copy a queue from Q1 to Q2      : qload -iQ1 -oQ2\n");
+  fprintf(stdout,"Move a queue from Q1 to Q2      : qload -IQ1 -oQ2\n");
+  fprintf(stdout,"Move old messages from Q1 to Q2 : qload -IQ1 -oQ2 -T1440\n");
+  fprintf(stdout,"Provide Summary of messages     : qload -iQ1 -ds\n");
 }
 
 /**********************************************************************/

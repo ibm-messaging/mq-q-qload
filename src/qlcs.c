@@ -521,9 +521,7 @@ void CSSetEvent(CSEVENT * event)
 MOD_EXIT:
   pthread_mutex_unlock(&event->mutex);
 }
-#if defined(_LINUX_2) || defined(_SOLARIS_2) || defined(_HPUX_SOURCE)   \
-  || defined(AMQ_DARWIN)
-
+#if defined(_LINUX_2) || defined(_SOLARIS_2) || defined(_HPUX_SOURCE) 
 #ifndef TIMEVAL_TO_TIMESPEC
 #define TIMEVAL_TO_TIMESPEC(tv, ts) {                                   \
         (ts)->tv_sec = (tv)->tv_sec;                                    \

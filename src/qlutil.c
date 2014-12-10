@@ -23,7 +23,7 @@
 #include "qlutil.h"
 #include "qlcs.h"
 
-#if defined(AMQ_AS400) || defined(AMQ_DARWIN)
+#if defined(AMQ_AS400) 
 #include "stdlib.h"
 #endif
 

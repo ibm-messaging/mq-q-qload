@@ -210,7 +210,7 @@ static char * GetDefaultPath(void)
 
   /* printf("Bit64 is %d\n",Bit64); */
 
-#if defined(_LINUX_2) || defined(AMQ_DARWIN)
+#if defined(_LINUX_2)
   return Bit64 ? "/opt/mqm/lib64" : "/opt/mqm/lib";
 #elif defined(_SOLARIS_2)
   return Bit64 ? "/opt/mqm/lib64" : "/opt/mqm/lib";

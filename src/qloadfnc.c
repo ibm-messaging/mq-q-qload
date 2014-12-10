@@ -2255,7 +2255,7 @@ static MQLONG WriteFileHeader(QLOPT * pOpt)
     strcpy(Nowc,pTime);
   }
                                      /* Ok, write header            */
-  n = fprintf(pOpt->hOutFile,"* DMPMQMSG Version:%s Created:%s",
+  n = fprintf(pOpt->hOutFile,"* QLOAD Version:%s Created:%s",
               QLOAD_VERSION,Nowc);
   if (n<=0)
   {
@@ -2380,7 +2380,7 @@ MQLONG QloadFnc(QLOPT * pOpt,BOOL Prompt)
       if (memcmp(pOpt->pLine,"* QLOAD",7) != 0 && memcmp(pOpt->pLine,"* DMPMQMSG",10) != 0)
       {
         Reason = MQRC_FILE_SYSTEM_ERROR;
-        sprintf(pOpt->ErrorMessage,"File '%s' does not appear to be a dmpmqmsg file",
+        sprintf(pOpt->ErrorMessage,"File '%s' does not appear to be a qload file",
                 pOpt->InputFileName);
         goto MOD_EXIT;
       }

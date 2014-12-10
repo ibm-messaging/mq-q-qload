@@ -1631,7 +1631,7 @@ int main(int     argc,
   MQCHAR12 Userid;
   BOOL     bFileInput = FALSE;         /* Used to remove > prompt     */
 
-  sprintf(Parms,"WebSphere MQ Q Program [Build:%s] \n",
+  sprintf(Parms,"IBM MQ Q Program [Build:%s] \n",
                  __DATE__);
   UsageLine(Parms);
 

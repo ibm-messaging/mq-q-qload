@@ -83,15 +83,6 @@
   #endif
 #endif
 
-#if defined (AMQ_DARWIN)
-  #ifdef _REENTRANT
-    #define SERVER_LIB   "libmqm_r.dylib"
-    #define CLIENT_LIB   "libmqic_r.dylib"
-  #else
-    #define SERVER_LIB   "libmqm.dylib"
-    #define CLIENT_LIB   "libmqic.dylib"
-  #endif
-#endif
 
 #endif
                                        /* Datatypes                   */
