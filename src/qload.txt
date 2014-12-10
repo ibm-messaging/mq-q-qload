@@ -1,0 +1,74 @@
+IBM MQ Queue Load/Unload Utility
+
+Usage: QLOAD <Optional flags as below>
+        [-a <File access mode for fopen()>
+            a  Append
+            b  Binary
+        [-b <initial buffer size in Kb>]
+        [-c Connect in client mode]
+        [-C [A][I][a][i][d][n] Context]
+            A  Set all context (default)
+            I  Set identity context
+            a  Pass all context
+            i  Pass identity context
+            d  Default context
+            n  No context
+        [-d <Display Options>]
+            a         Add ASCII columns to HEX file
+            A         Write output file in ASCII lines rather than HEX
+            c         Output ApplData MQMD fields as char
+            C         Display Correlation Id in summary
+            H         Don't write file header
+            i         Write message index
+            p         Write output file in printable characters format
+            s         Display queue summary
+            M         Display Message Ids in summary
+            N         Don't write MQMD to file
+            t         Write output file in text lines
+            T         Display time on queue
+            w<Length> Data width
+        [-D <Delay>]
+          +ve fixed delay in milliseconds
+          -ve random delay in milliseconds
+          r[time%] relative delay
+        [-f <File Name> or -f <stdout>]
+        [-F <File Name>   (forcing overwrite)]
+        [-g [x][c][m][g] <Id> Get by Id
+            x  Id is in Hex
+            m  Id is Message Id
+            c  Id is Correlation Id
+            g  Id is Group Id
+        [-h Strip headers
+        [-i <Input Queue> (Browse)]
+        [-I <Input Queue> (Get)]
+        [-l <library name> e.g.mqm or mqic32]
+        [-m <Queue Manager name>]
+        [-o <Output Queue>]
+        [-p  Purge source queue]
+        [-P <CCSID>[:X'Encoding'] Convert]
+        [-q  Quiet]
+        [-r <Message Range>]
+           x    Message x only
+           x..y Message x to message y
+           x#y  y messages starting at message x
+           #x   First x messages
+        [-t <Transaction Message Limit>]
+        [-T <Time on queue (Age) selection>
+            [[[DD:]HH:]MM ][,[[DD:]HH:]MM]
+        [-s <Ascii Search String>]
+        [-S <Ascii Not Search String>]
+        [-e <Ebcdic Search String>]
+        [-E <Ebcdic Not Search String>]
+        [-w <MQGET Wait interval(seconds)]
+        [-x <Hex Search String>]
+        [-X <Hex Not Search String>]
+
+Examples 
+-------- 
+Unload a queue to a file        : qload -iQ1 -fmyfile
+Load a queue from a file        : qload -oQ1 -fmyfile
+Copy a queue from Q1 to Q2      : qload -iQ1 -oQ2
+Move a queue from Q1 to Q2      : qload -IQ1 -oQ2
+Move old messages from Q1 to Q2 : qload -IQ1 -oQ2 -T1440
+Convert from old file to new    : qload -foldfile -fnewfile -da
+Provide Summary of messages     : qload -iQ1 -ds

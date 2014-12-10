@@ -1,0 +1,117 @@
+IBM MQ Q Program
+
+Usage: Q <Optional flags as below>
+	[-a[dnpqcRrstfFaAcD] Message attributes
+	   p:Persistent,n:Non-Persisent,q:Persistence as Q,s:Allow Segmentation
+	   c:complete message,d:Datagram,R:Request,r:Reply,t:Report
+	   f:Async put,             F:no async put
+	   a:Read Ahead,            A:No Read Ahead
+	   c:Complete message
+	   C:Close Quiesce,         D:Close Delete
+	   i:Individual queues      o:Use offsets
+	   x:No # message procesing X:Input exclusive
+	   2:Force message properties as MQRFH2s
+	[-A[i|o|a]<value> Application Identity|Origin Data|Acct Token
+  (c)   [-b Browse input Q (DEP:use i rather than I]
+	[-cCCSid[:X'Encoding'] Convert]
+	[-C[a][i][A][I] Context]
+	   a: pass all context     i: pass identity context
+	   A: set all context      I: set identity context
+	   n: no context
+  (c)   [-d[h][f][n][w<width>][1][2][3] Display Detail
+	   h:Print message in hex  n:Don't print message
+	   d/D:Print out MQMD      o/O:Print out MQOD
+	   p/P:Print out MQPMO     g/G:Print out MQGMO
+	   s/S:Print out MQSD      r/R:Print out MQSRO
+	   a:All properties        n:No properties
+	   F:Force RFH2
+	   x:Use XML Shortform     X:No XML Auto detect
+	   l:Print message length  f:Format recognised messages
+	   1:Low level of detail   2:Medium level of detail
+	   3:High level of detail
+	[-e Echo to Reply Queue]
+	[-E Echo to Reply Queue and set Reply QMgr]
+	[-f Input file] Each line is one message
+	[-F Load/Unload file] Entire file for one message
+	[-X Load a file in hex as one message
+	[-g[p][x][C][m|c|g]identifier      Get or Put by identifier
+	   x:ID is in hex   p:Put with ID       C:Use MQCI New session
+	   m:Message ID     c:Correlation ID    g:Group ID
+	[-h Filter string]
+	[-H Selection string]
+  (c)   [-i Input Queue (browse)]
+  (c)   [-I Input Queue (get)]
+	[-j Specify format name ]
+	[-k Browse Lock]
+	[-l Library name] e.g.mqm or mqic
+	[-L Message Limit] Maximum number of messages to process
+	[-m LocalQueueManager]
+	[-M Simple text message]
+	[-n"Confirm options" below :-
+	   [ca|cad|cafd] [cd|cdd|cdfd] [e|ed|efd] [x|xd|xfd]
+	   [pan][nan][newm][passm][copym][disc][passd][act]
+  (c)   {-o Output Queue} Multiple use uses distribution list
+	{-O Output Queue} Bind on Open version of above
+	[-p Commit interval]        [-P Message Priority]
+	[-q Quiet....don't write messages to screen
+	[-r[+] Reply Queue]
+	[-s Force msg output to stdout]
+	[-$ Queue Separator character]
+	[-t Print timings
+	[-U[+] User Identifier [+]: Alternate Userid
+	[-v[p|P|1|2|3|4|5] Verbose Level
+	   p: Pause, P: Cmd line parms >=1: Message info,>=2: API info]
+	[-V[z][c] Return value, default MQRC]
+	   z:Force zero return          c:MQCC mapped to 0,4,8
+  (c)   [-w Wait for messages (in seconds)]
+	[-W Sleep before issuing MQGET (in milliseconds)]
+	[-x[f][s][i][b|n][c][q][N][t][u] Use MQCONNX]
+	   f:Fast binding     s:Standard binding     i:Isolated
+	   b:Shared Blocking Connection n:Shared Nonblocking Connection
+	   c:Specify channel on MQCONNX
+	   q:No fail if quiescing       N:No MQDISC
+	   t:Specify connection tag on MQCONNX
+	   u:Specify User ID and Password MQCONNX
+	   v:Register event handler (client mode only)
+	[-y Expire time in 1/10th's second
+	[-z Zero out MsgId before MQPUT
+	[-Z TimeZone (hours) Put Date/Time
+	[-1 Use MQPUT1 rather than MQPUT
+	[-# Structure versions] eg. #m1p2g2o1x4 or #c for current
+	[-* Repeat execution]
+	[-=[n] Set Max Msg Length - 'n' will not truncate]
+	[-! Do not use exithandler]
+	[-S[o:TopicObject] Subscribe to Topic Object
+	[  [s:TopicString] Subscribe to Topic String
+	[  [n:SubName]     Subscription Name
+	[  [u:SubUserData] Subscription User Data
+	[  [l SubLevel]    Subscription Level
+	[  [c][r][a]  [d][v][f][g] [N][R] [C][T]
+	   c:Create (def) r:Resume        a:Alter subscription
+	   d:Durable
+	   v:Any User     f:Fixed User    g:Group Sub
+	   N:New pubs only                R:Pubs on request
+	   C:Wildcard Char                T:Wildcard Topic
+	   D:Delete durable sub
+	[-T[o:TopicObject] Publish to Topic Object
+	[  [s:TopicString] Publish to Topic String
+	[  [r][p][n][w]
+	   r:Retain       p:Supress ReplyTo
+	   n:Not own Subs w:Warn if no match
+
+Common options marked with (c)
+
+ Examples
+ --------
+ Write to a queue                : q -oQ1
+ Write to two queues (Dist list) : q -oQ1 -oQ2
+ Write to a queue on remote Qmgr : q -oQM2/Q1
+ Read from a queue               : q -IQ1
+ Browse from a queue             : q -iQ1
+ Show Message Descriptor         : q -iQ1 -dd3
+ Wait for messages               : q -IQ1 -w60
+ Move messages between Queues    : q -IQ1 -oQ2
+ Copy messages between Queues    : q -iQ1 -oQ2
+ Subscribe to a topic            : q -Ss:TopicStr -w60
+ Make a durable subscription     : q -Sds:TopicStr -Sn:MySubName -w60
+ Publish on a topic              : q -Ts:TopicStr
